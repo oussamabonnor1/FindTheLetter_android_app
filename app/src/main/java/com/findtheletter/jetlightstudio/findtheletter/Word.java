@@ -49,6 +49,7 @@ public class Word {
         for (int i = 0; i < testWord.length(); i++) {
             wordLetters.add(i, word.charAt(i));
         }
+        System.out.println(wordLetters);
         return wordLetters;
     }
 
