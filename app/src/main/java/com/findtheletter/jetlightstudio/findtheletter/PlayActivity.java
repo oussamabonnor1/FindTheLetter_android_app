@@ -12,19 +12,22 @@ import java.util.ArrayList;
 
 public class PlayActivity extends AppCompatActivity {
     TextView wordText;
+    TextView scoreText;
     EditText textField;
     ArrayList<Character> characters = new ArrayList<>();
     String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
     int index = 0;
+    int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         wordText = (TextView) findViewById(R.id.wordText);
+        scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
-        jetlight = new Word(1, 1);
+        jetlight = new Word(1, score);
         makeWordIntoText(index);
     }
 
@@ -53,6 +56,8 @@ public class PlayActivity extends AppCompatActivity {
         for (int i = 0; i < jetlight.organizedCharacters.size(); i++) {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
+        score = jetlight.getScore();
+        scoreText.setText("Score: "+String.format("%02d",score));
         if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())){
             makeWordIntoText(index);
         }
