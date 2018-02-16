@@ -16,7 +16,7 @@ public class ImageActivity extends AppCompatActivity {
     EditText textField;
     ProgressBar progressBar;
     ArrayList<Character> characters = new ArrayList<>();
-    String words[] = {"castle","giraffe","saturn","eagle","africa","radio","alarm","pizza","money","sheep","rain","penguin","television","tree","fire"};
+    String words[] = {"castle", "giraffe", "saturn", "eagle", "africa", "radio", "alarm", "pizza", "money", "sheep", "rain", "penguin", "television", "tree", "fire"};
     Word jetlight;
     int index = 0;
     int score = 0;
@@ -24,9 +24,8 @@ public class ImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play);
+        setContentView(R.layout.activity_image);
         image = (ImageView) findViewById(R.id.myImage);
-        System.out.println(image);
         scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -34,8 +33,8 @@ public class ImageActivity extends AppCompatActivity {
         setImage();
     }
 
-    public void setImage(){
-        int i = Resources.getSystem().getIdentifier(words[index],"drawable",getPackageName());
+    public void setImage() {
+        int i = this.getResources().getIdentifier(words[index], "mipmap", this.getPackageName());
         image.setImageResource(i);
         index++;
     }
