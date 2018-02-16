@@ -13,6 +13,11 @@
         <item name="colorPrimaryDark">#009CB3</item>
         <item name="colorAccent">#FFFFFF</item>
     </style>
+    <style name="imageTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#00BFA5</item>
+        <item name="colorPrimaryDark">#008E76</item>
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

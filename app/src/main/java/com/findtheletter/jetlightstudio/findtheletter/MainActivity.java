@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button wordButton;
+    Button imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(),PlayActivity.class);
+                startActivity(i);
+            }
+        });
+        imageButton = (Button) findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(),ImageActivity.class);
                 startActivity(i);
             }
         });
