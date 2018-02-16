@@ -26,7 +26,7 @@
             android:max="100"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:progress="25"
+            android:progress="0"
             android:visibility="visible"
             tools:visibility="visible" />
 
@@ -64,11 +64,11 @@
         <ImageView
             android:id="@+id/myImage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:src="@mipmap/africa"
-            android:layout_weight="1.6"
+            android:layout_height="0dp"
             android:layout_gravity="center"
+            android:layout_weight="1.6"
+            android:scaleType="centerInside"
+            android:src="@mipmap/castle"
             android:text="s---r"
             android:textSize="50sp" />
 
@@ -78,7 +78,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="50dp"
             android:layout_marginStart="50dp"
-            android:layout_weight=".4"
+            android:layout_weight=".6"
             android:backgroundTint="#212121"
             android:gravity="center" />
 
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
-            android:layout_weight="1"
+            android:layout_weight=".8"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -111,7 +111,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:background="#00BFA5"
-                android:onClick="checkWord"
+                android:onClick="checkImage"
                 android:text="Check"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
