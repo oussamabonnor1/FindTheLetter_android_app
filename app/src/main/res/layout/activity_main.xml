@@ -88,6 +88,7 @@
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:paddingBottom="10dp"
+                android:onClick="notAvailable"
                 />
             <Button
                 android:layout_width="0dp"
@@ -102,6 +103,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:paddingBottom="10dp"
+                android:onClick="notAvailable"
                 />
         </LinearLayout>
     </LinearLayout>

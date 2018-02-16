@@ -18,7 +18,7 @@ public class ImageActivity extends AppCompatActivity {
     EditText textField;
     ProgressBar progressBar;
     ArrayList<Character> characters = new ArrayList<>();
-    String words[] = {"castle", "giraffe", "planet", "eagle", "africa", "radio", "alarm", "pizza", "money", "sheep", "rain", "penguin", "television", "tree", "fire"};
+    String words[] = {"fox","castle","car","elephant","house", "giraffe", "planet","boat", "eagle", "africa", "radio", "alarm", "camera", "pizza", "money", "sheep", "rain", "penguin", "television", "tree", "fire"};
     int index = 0;
     int score = 0;
 
@@ -39,9 +39,9 @@ public class ImageActivity extends AppCompatActivity {
         index++;
     }
 
-    public void checkImage(View v){
+    public void checkImage(View v) {
         String msg;
-        if (textField.getText().toString().equals(words[index-1])) {
+        if (textField.getText().toString().equals(words[index - 1])) {
             msg = "Correct!";
             score += 15;
             float progress = (float) index / words.length;

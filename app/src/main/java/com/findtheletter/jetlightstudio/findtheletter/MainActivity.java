@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button wordButton;
@@ -29,5 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void notAvailable(View v){
+        Toast.makeText(getApplicationContext(),"Coming soon!",Toast.LENGTH_SHORT).show();
     }
 }
