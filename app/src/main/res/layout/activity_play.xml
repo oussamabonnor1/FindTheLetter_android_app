@@ -55,6 +55,36 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="#F4F4F4"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:weightSum="3">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="S----r"
+            android:textSize="50sp"
+            android:gravity="bottom|center"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text=""
+            android:layout_weight="0.6"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:text="Check"
+            android:background="#3F51B5"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="15dp"
+            />
     </LinearLayout>
 </LinearLayout>
