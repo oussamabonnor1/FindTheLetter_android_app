@@ -11,7 +11,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class PlayActivity extends AppCompatActivity {
-    Button check;
     TextView wordText;
     EditText textField;
     ArrayList<Character> characters = new ArrayList<>();
@@ -23,7 +22,6 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        check = (Button) findViewById(R.id.check);
         wordText = (TextView) findViewById(R.id.wordText);
         textField = (EditText) findViewById(R.id.textField);
         jetlight = new Word(1, 1);
