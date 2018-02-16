@@ -3,8 +3,8 @@ package com.findtheletter.jetlightstudio.findtheletter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +14,7 @@ public class PlayActivity extends AppCompatActivity {
     TextView wordText;
     TextView scoreText;
     EditText textField;
+    ProgressBar progressBar;
     ArrayList<Character> characters = new ArrayList<>();
     String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
@@ -27,6 +28,7 @@ public class PlayActivity extends AppCompatActivity {
         wordText = (TextView) findViewById(R.id.wordText);
         scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         jetlight = new Word(1, score);
         makeWordIntoText(index);
     }
@@ -57,9 +59,12 @@ public class PlayActivity extends AppCompatActivity {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
         score = jetlight.getScore();
-        scoreText.setText("Score: "+String.format("%02d",score));
-        if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())){
+        float progress = (float) this.index / words.length;
+        progressBar.setProgress((int) (progress * 100));
+        scoreText.setText("Score: " + String.format("%02d", score));
+        if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())) {
             makeWordIntoText(index);
         }
     }
+
 }
