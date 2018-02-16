@@ -15,7 +15,9 @@ public class PlayActivity extends AppCompatActivity {
     TextView wordText;
     EditText textField;
     ArrayList<Character> characters = new ArrayList<>();
+    String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
+    int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +26,37 @@ public class PlayActivity extends AppCompatActivity {
         check = (Button) findViewById(R.id.check);
         wordText = (TextView) findViewById(R.id.wordText);
         textField = (EditText) findViewById(R.id.textField);
-        jetlight = new Word(1,1);
-        characters = jetlight.decompose("jetlight");
-        characters =  jetlight.generateWord(characters,0);
-        for (int i = 0; i < characters.size(); i++) {
-            wordText.setText(wordText.getText()+characters.get(i).toString());
-        }
-
+        jetlight = new Word(1, 1);
+        makeWordIntoText(index);
     }
 
-    public void checkWord(View v){
+    public void checkWord(View v) {
         String msg;
-        System.out.println(textField.getText().toString());
-        if(jetlight.guessingCharachter(textField.getText().toString(),2)){
+        if (jetlight.guessingCharachter(textField.getText().toString(), 2)) {
             msg = "Correct!";
-        }else msg = "wrong...";
-        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+            updateWord();
+        } else msg = "try again...";
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        textField.setText("");
+    }
 
+    public void makeWordIntoText(int index) {
+        characters.clear();
+        jetlight.organizedCharacters.clear();
+        jetlight.wordLetters.clear();
+        characters = jetlight.decompose(words[index]);
+        characters = jetlight.generateWord(characters, 0);
+        updateWord();
+        this.index++;
+    }
+
+    public void updateWord() {
+        wordText.setText("");
+        for (int i = 0; i < jetlight.organizedCharacters.size(); i++) {
+            wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
+        }
+        if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())){
+            makeWordIntoText(index);
+        }
     }
 }

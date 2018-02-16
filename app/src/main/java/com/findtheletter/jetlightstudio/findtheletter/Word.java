@@ -3,8 +3,9 @@ package com.findtheletter.jetlightstudio.findtheletter;
 /**
  * Created by oussama on 16/02/2018.
  */
-        import java.util.ArrayList;
-        import java.util.Random;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Word {
     //variables:
@@ -43,13 +44,11 @@ public class Word {
         this.score = score;
     }
 
-
     //transform a word into a pile of letters
     ArrayList<Character> decompose(String word) {
-        for (int i = 0; i < testWord.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
             wordLetters.add(i, word.charAt(i));
         }
-        System.out.println(wordLetters);
         return wordLetters;
     }
 
@@ -194,7 +193,7 @@ public class Word {
             int letter;
             do {
                 letter = r.nextInt(word.length());
-            } while (!(organised.charAt(letter) =='-'));
+            } while (!(organised.charAt(letter) == '-'));
 
             /*System.out.println(organised);
             char[] test = organised.toCharArray();
