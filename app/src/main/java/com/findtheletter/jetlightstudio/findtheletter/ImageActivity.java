@@ -1,7 +1,6 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -35,17 +34,17 @@ public class ImageActivity extends AppCompatActivity {
     public void setImage() {
         int i = this.getResources().getIdentifier(words[imageIndex], "mipmap", this.getPackageName());
         image.setImageResource(i);
-        imageIndex++;
     }
 
     public void checkImage(View v) {
         String msg;
-        if (textField.getText().toString().equals(words[imageIndex - 1])) {
+        if (textField.getText().toString().equals(words[imageIndex])) {
             msg = "Correct!";
             score += 15;
             float progress = (float) imageIndex / words.length;
             progressBar.setProgress((int) (progress * 100));
             scoreText.setText("Score: " + String.format("%02d", score));
+            imageIndex++;
             setImage();
         } else msg = "try again...";
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -55,7 +54,7 @@ public class ImageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(getApplicationContext(), MainActivity.class).putExtra("score", score);
-        i = pushItems(i,score,wordIndex,imageIndex);
+        i = pushItems(i, score, wordIndex, imageIndex);
         startActivity(i);
         super.onBackPressed();
     }
@@ -71,7 +70,7 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
-        i.putExtra("Score", score);
+        i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
         return i;
@@ -81,5 +80,7 @@ public class ImageActivity extends AppCompatActivity {
         score = getIntent().getExtras().getInt("score");
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
+        System.out.println(score + " " + wordIndex + " " + imageIndex);
+        setImage();
     }
 }

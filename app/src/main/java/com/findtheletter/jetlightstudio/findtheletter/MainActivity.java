@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
-        i.putExtra("Score", score);
+        i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
         return i;

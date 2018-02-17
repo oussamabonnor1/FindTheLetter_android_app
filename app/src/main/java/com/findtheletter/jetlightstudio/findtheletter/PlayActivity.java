@@ -52,7 +52,6 @@ public class PlayActivity extends AppCompatActivity {
         characters = jetlight.decompose(words[index]);
         characters = jetlight.generateWord(characters, 0);
         updateWord();
-        this.wordIndex++;
     }
 
     public void updateWord() {
@@ -60,11 +59,14 @@ public class PlayActivity extends AppCompatActivity {
         for (int i = 0; i < jetlight.organizedCharacters.size(); i++) {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
+        System.out.println("one: "+score);
         score = jetlight.getScore();
+        System.out.println("two: "+score);
         float progress = (float) this.wordIndex / words.length;
         progressBar.setProgress((int) (progress * 100));
         scoreText.setText("Score: " + String.format("%02d", score));
         if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())) {
+            wordIndex++;
             makeWordIntoText(wordIndex);
         }
     }
@@ -72,7 +74,7 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(getApplicationContext(), MainActivity.class).putExtra("score", score);
-        i = pushItems(i,score,wordIndex,imageIndex);
+        i = pushItems(i, score, wordIndex, imageIndex);
         startActivity(i);
         super.onBackPressed();
     }
@@ -83,12 +85,11 @@ public class PlayActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             loadItems();
         } else System.out.println("no");
-
         scoreText.setText("Score: " + String.format("%02d", score));
     }
 
     protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
-        i.putExtra("Score", score);
+        i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
         return i;
@@ -96,7 +97,10 @@ public class PlayActivity extends AppCompatActivity {
 
     protected void loadItems() {
         score = getIntent().getExtras().getInt("score");
+        jetlight.setScore(score);
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
+        makeWordIntoText(wordIndex);
+        System.out.println(score + " " + wordIndex + " " + imageIndex);
     }
 }
