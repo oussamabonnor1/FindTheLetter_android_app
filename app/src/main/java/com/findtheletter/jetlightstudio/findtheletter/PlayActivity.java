@@ -1,5 +1,6 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,8 @@ public class PlayActivity extends AppCompatActivity {
     ArrayList<Character> characters = new ArrayList<>();
     String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
-    int index = 0;
+    int wordIndex = 0;
+    int imageIndex = 0;
     int score = 0;
 
     @Override
@@ -30,7 +32,7 @@ public class PlayActivity extends AppCompatActivity {
         textField = (EditText) findViewById(R.id.textField);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         jetlight = new Word(1, score);
-        makeWordIntoText(index);
+        makeWordIntoText(wordIndex);
     }
 
     public void checkWord(View v) {
@@ -50,7 +52,7 @@ public class PlayActivity extends AppCompatActivity {
         characters = jetlight.decompose(words[index]);
         characters = jetlight.generateWord(characters, 0);
         updateWord();
-        this.index++;
+        this.wordIndex++;
     }
 
     public void updateWord() {
@@ -59,12 +61,42 @@ public class PlayActivity extends AppCompatActivity {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
         score = jetlight.getScore();
-        float progress = (float) this.index / words.length;
+        float progress = (float) this.wordIndex / words.length;
         progressBar.setProgress((int) (progress * 100));
         scoreText.setText("Score: " + String.format("%02d", score));
         if (jetlight.organizedCharacters.toString().equals(jetlight.wordLetters.toString())) {
-            makeWordIntoText(index);
+            makeWordIntoText(wordIndex);
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class).putExtra("score", score);
+        i = pushItems(i,score,wordIndex,imageIndex);
+        startActivity(i);
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getIntent().getExtras() != null) {
+            loadItems();
+        } else System.out.println("no");
+
+        scoreText.setText("Score: " + String.format("%02d", score));
+    }
+
+    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
+        i.putExtra("Score", score);
+        i.putExtra("wordIndex", wordIndex);
+        i.putExtra("imageIndex", imageIndex);
+        return i;
+    }
+
+    protected void loadItems() {
+        score = getIntent().getExtras().getInt("score");
+        wordIndex = getIntent().getExtras().getInt("wordIndex");
+        imageIndex = getIntent().getExtras().getInt("imageIndex");
+    }
 }
