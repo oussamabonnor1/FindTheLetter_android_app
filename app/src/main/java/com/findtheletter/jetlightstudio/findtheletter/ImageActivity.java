@@ -48,6 +48,7 @@ public class ImageActivity extends AppCompatActivity {
             setImage();
         } else msg = "try again...";
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+
         textField.setText("");
     }
 
