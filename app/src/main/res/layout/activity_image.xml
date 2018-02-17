@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:background="#00BFA5"
                     android:onClick="checkImage"
@@ -132,5 +132,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="190sp"
         android:background="@drawable/roundedbutton"
-        android:src="@mipmap/helpimage"/>
+        android:src="@mipmap/helpimage"
+        android:onClick="help"/>
 </FrameLayout>

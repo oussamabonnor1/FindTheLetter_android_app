@@ -18,6 +18,11 @@
         <item name="colorPrimaryDark">#008E76</item>
         <item name="colorAccent">#FFFFFF</item>
     </style>
+    <style name="helpTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryDark">#C79100</item>
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

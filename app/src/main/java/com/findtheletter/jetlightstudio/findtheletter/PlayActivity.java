@@ -1,10 +1,13 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,7 @@ public class PlayActivity extends AppCompatActivity {
     TextView scoreText;
     EditText textField;
     ProgressBar progressBar;
+    ImageButton helpButton;
     ArrayList<Character> characters = new ArrayList<>();
     String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
@@ -30,6 +34,18 @@ public class PlayActivity extends AppCompatActivity {
         wordText = (TextView) findViewById(R.id.wordText);
         scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
+        helpButton = (ImageButton) findViewById(R.id.help);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder b = new AlertDialog.Builder(PlayActivity.this);
+                View v = getLayoutInflater().inflate(R.layout.activity_help,null);
+                b.setView(v);
+                AlertDialog a = b.create();
+                a.show();
+            }
+        });
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         jetlight = new Word(1, score);
         makeWordIntoText(wordIndex);
