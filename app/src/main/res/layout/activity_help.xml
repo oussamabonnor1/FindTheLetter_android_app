@@ -5,26 +5,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="2"
+    android:weightSum="1.5"
     tools:context="com.findtheletter.jetlightstudio.findtheletter.HelpActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".6"
-        android:background="#FFC107">
+        android:layout_weight=".3"
+        android:background="#FFC107"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight=".9"
             android:gravity="center"
+            android:paddingStart="30dp"
             android:text="You have 0 stars"
             android:textColor="#FFFFFF"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight=".1"
+            android:background="@android:color/transparent"
+            android:onClick="onBackPressedMine"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,42 +50,84 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1"
-            android:weightSum="3">
+            android:orientation="vertical"
+            android:weightSum="2">
 
             <ImageView
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.8"
+                android:layout_marginTop="30dp"
+                android:layout_weight=".8"
                 android:src="@mipmap/goldstar" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_weight=".4"
                 android:gravity="center"
-                android:text="Gold stars x 03"
+                android:text="x 03"
                 android:textColor="#FFC107"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_weight=".4"/>
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight=".6"
                 android:layout_gravity="center"
-                android:text="Get Word"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight=".5"
                 android:background="#FFC107"
+                android:text="Get Word"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight=".8"
+                android:src="@mipmap/bluestar" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".4"
+                android:gravity="center"
+                android:text="x 03"
+                android:textColor="#47C1CE"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight=".5"
+                android:background="#47C1CE"
+                android:text="Get Word"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".4"
+        android:layout_weight=".2"
         android:background="#FFC107" />
+
 </LinearLayout>

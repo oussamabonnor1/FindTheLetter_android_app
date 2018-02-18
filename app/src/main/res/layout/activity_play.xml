@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/blueLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#277555"
@@ -30,9 +31,10 @@
                 android:layout_weight="1"
                 android:indeterminate="false"
                 android:max="100"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="100dp"
+                android:paddingRight="100dp"
                 android:progress="25"
+                android:progressTint="@android:color/background_light"
                 android:visibility="visible"
                 tools:visibility="visible" />
 
@@ -86,6 +88,7 @@
                 android:backgroundTint="#212121"
                 android:gravity="center|bottom"
                 android:hint="click to write"
+                android:inputType="text"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -109,7 +112,7 @@
                     android:textSize="25sp" />
 
                 <Button
-                    android:id="@+id/check"
+                    android:id="@+id/help"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
@@ -117,22 +120,20 @@
                     android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:background="#3F51B5"
-                    android:onClick="checkWord"
-                    android:text="Check"
+                    android:text="Help"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/help"
+    <!--<ImageButton
+        android:id="@+id/help2"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_gravity="end"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="190sp"
         android:background="@drawable/roundedbutton"
         android:src="@mipmap/helpword"
-        />
+        android:layout_alignEnd="@id/blueLayout"
+        />-->
 </FrameLayout>

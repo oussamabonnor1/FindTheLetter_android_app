@@ -1,10 +1,15 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +20,7 @@ public class ImageActivity extends AppCompatActivity {
     TextView scoreText;
     EditText textField;
     ProgressBar progressBar;
+    Button helpButton;
     String words[] = {"fox", "castle", "car", "elephant", "house", "giraffe", "planet", "boat", "eagle", "africa", "radio", "alarm", "camera", "pizza", "money", "sheep", "rain", "penguin", "television", "tree", "fire"};
     int imageIndex = 0;
     int score = 0;
@@ -26,7 +32,32 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
         image = (ImageView) findViewById(R.id.myImage);
         scoreText = (TextView) findViewById(R.id.scoreText);
+
         textField = (EditText) findViewById(R.id.textField);
+        textField.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    checkImage(findViewById(android.R.id.content));
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        helpButton = (Button) findViewById(R.id.help);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder b = new AlertDialog.Builder(ImageActivity.this);
+                View v = getLayoutInflater().inflate(R.layout.activity_help, null);
+                b.setView(v);
+                AlertDialog a = b.create();
+                a.show();
+            }
+        });
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setImage();
     }

@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +20,9 @@ public class PlayActivity extends AppCompatActivity {
     TextView scoreText;
     EditText textField;
     ProgressBar progressBar;
-    ImageButton helpButton;
+    Button helpButton;
     ArrayList<Character> characters = new ArrayList<>();
-    String words[] = {"jetlight", "moon", "dog", "water", "moon", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
+    String words[] = {"jetlight", "moon", "dog", "water", "shark", "sun", "butterfly", "octopus", "light", "apple", "button"};
     Word jetlight;
     int wordIndex = 0;
     int imageIndex = 0;
@@ -34,15 +35,27 @@ public class PlayActivity extends AppCompatActivity {
         wordText = (TextView) findViewById(R.id.wordText);
         scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
-        helpButton = (ImageButton) findViewById(R.id.help);
+        helpButton = (Button) findViewById(R.id.help);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder b = new AlertDialog.Builder(PlayActivity.this);
-                View v = getLayoutInflater().inflate(R.layout.activity_help,null);
+                View v = getLayoutInflater().inflate(R.layout.activity_help, null);
                 b.setView(v);
                 AlertDialog a = b.create();
                 a.show();
+            }
+        });
+
+        textField.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    checkWord(findViewById(android.R.id.content));
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -75,9 +88,9 @@ public class PlayActivity extends AppCompatActivity {
         for (int i = 0; i < jetlight.organizedCharacters.size(); i++) {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
-        System.out.println("one: "+score);
+        System.out.println("one: " + score);
         score = jetlight.getScore();
-        System.out.println("two: "+score);
+        System.out.println("two: " + score);
         float progress = (float) this.wordIndex / words.length;
         progressBar.setProgress((int) (progress * 100));
         scoreText.setText("Score: " + String.format("%02d", score));

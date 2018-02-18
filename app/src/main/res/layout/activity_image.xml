@@ -29,9 +29,10 @@
                 android:layout_weight="1"
                 android:indeterminate="false"
                 android:max="100"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:progress="0"
+                android:paddingLeft="100dp"
+                android:paddingRight="100dp"
+                android:progress="25"
+                android:progressTint="@android:color/background_light"
                 android:visibility="visible"
                 tools:visibility="visible" />
 
@@ -86,7 +87,8 @@
                 android:layout_marginStart="50dp"
                 android:layout_weight=".6"
                 android:backgroundTint="#212121"
-                android:gravity="center" />
+                android:gravity="center"
+                android:inputType="text"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +111,7 @@
                     android:textSize="25sp" />
 
                 <Button
-                    android:id="@+id/check"
+                    android:id="@+id/help"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
@@ -117,21 +119,20 @@
                     android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:background="#00BFA5"
-                    android:onClick="checkImage"
-                    android:text="Check"
+                    android:text="Help"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <ImageButton
+    <!--<ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="end"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="190sp"
         android:background="@drawable/roundedbutton"
-        android:src="@mipmap/helpimage"
-        android:onClick="help"/>
+        android:onClick="help"
+        android:src="@mipmap/helpimage" />-->
 </FrameLayout>
