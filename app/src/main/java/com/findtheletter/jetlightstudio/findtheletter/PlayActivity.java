@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class PlayActivity extends AppCompatActivity {
     TextView wordText;
     TextView scoreText;
+    TextView hintText;
     EditText textField;
     ProgressBar progressBar;
     Button helpButton;
@@ -43,6 +45,42 @@ public class PlayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder b = new AlertDialog.Builder(PlayActivity.this);
                 View v = getLayoutInflater().inflate(R.layout.activity_help, null);
+                //assigning functions of buttons and textFields
+                ImageButton exitButton = v.findViewById(R.id.exitButton);
+                exitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                });
+                Button wordButton = v.findViewById(R.id.getWordButton);
+                wordButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (score > 25) {
+                            score-=25;
+                            hintText.setText("try using the word: " + words[wordIndex]);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Not enought points!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                Button letterButton = v.findViewById(R.id.getLetterButton);
+                letterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (score > 10) {
+                            score -= 10;
+                            hintText.setText("try using the letter: " + jetlight.help1(wordText.getText().toString(), words[wordIndex], 2));
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Not enought points!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                hintText = v.findViewById(R.id.hintText);
+                TextView startsText = v.findViewById(R.id.starsText);
+                startsText.setText("You have " + score + " points");
+                //end of assigning
                 b.setView(v);
                 AlertDialog a = b.create();
                 a.show();
@@ -136,6 +174,5 @@ public class PlayActivity extends AppCompatActivity {
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
         makeWordIntoText(wordIndex);
-        System.out.println(score + " " + wordIndex + " " + imageIndex);
     }
 }
