@@ -32,6 +32,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="soloTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#FE4C58</item>
+        <item name="colorPrimaryDark">#C4002F</item>
+        <item name="colorAccent">#212121</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

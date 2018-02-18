@@ -20,6 +20,7 @@ import android.widget.Toast;
 public class ImageActivity extends AppCompatActivity {
     ImageView image;
     TextView scoreText;
+    TextView hintText;
     EditText textField;
     ProgressBar progressBar;
     Button helpButton;
@@ -54,11 +55,62 @@ public class ImageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder b = new AlertDialog.Builder(ImageActivity.this);
                 View v = getLayoutInflater().inflate(R.layout.activity_help, null);
+                //assigning functions of buttons and textFields
+                ImageButton exitButton = v.findViewById(R.id.exitButton);
+                exitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                });
+                Button wordButton = v.findViewById(R.id.getWordButton);
+                wordButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (score > 25) {
+                            score -= 25;
+                            hintText.setText("try using the word: " + words[wordIndex]);
+                            scoreText.setText("Score: " + String.format("%02d", score));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Not enought points!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                Button letterButton = v.findViewById(R.id.getLetterButton);
+                letterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (score > 10) {
+                            score -= 10;
+                            hintText.setText("this word starts with: " + words[imageIndex].charAt(0));
+                            scoreText.setText("Score: " + String.format("%02d", score));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Not enought points!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                hintText = v.findViewById(R.id.hintText);
+                TextView startsText = v.findViewById(R.id.starsText);
+                startsText.setText("You have " + score + " points");
+                //end of assigning
                 b.setView(v);
                 AlertDialog a = b.create();
                 a.show();
             }
         });
+
+        textField.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    checkImage(findViewById(android.R.id.content));
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setImage();
@@ -71,7 +123,7 @@ public class ImageActivity extends AppCompatActivity {
 
     public void checkImage(View v) {
         //making the keyboard disappear
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
         String msg;

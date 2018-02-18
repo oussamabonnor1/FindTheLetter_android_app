@@ -58,10 +58,11 @@ public class PlayActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         if (score > 25) {
-                            score-=25;
+                            score -= 25;
                             hintText.setText("try using the word: " + words[wordIndex]);
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Not enought points!",Toast.LENGTH_SHORT).show();
+                            scoreText.setText("Score: " + String.format("%02d", score));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Not enought points!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -72,8 +73,9 @@ public class PlayActivity extends AppCompatActivity {
                         if (score > 10) {
                             score -= 10;
                             hintText.setText("try using the letter: " + jetlight.help1(wordText.getText().toString(), words[wordIndex], 2));
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Not enought points!",Toast.LENGTH_SHORT).show();
+                            scoreText.setText("Score: " + String.format("%02d", score));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Not enought points!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

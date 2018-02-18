@@ -30,6 +30,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/imageTheme" />
         <activity android:name=".HelpActivity" />
+        <activity android:name=".soloActivity"></activity>
     </application>
 
 </manifest>
