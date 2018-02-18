@@ -1,5 +1,6 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -68,6 +70,10 @@ public class ImageActivity extends AppCompatActivity {
     }
 
     public void checkImage(View v) {
+        //making the keyboard disappear
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
         String msg;
         if (textField.getText().toString().equals(words[imageIndex])) {
             msg = "Correct!";
