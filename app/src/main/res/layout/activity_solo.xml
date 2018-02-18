@@ -111,7 +111,7 @@
                     android:textColor="#212121"
                     android:textSize="25sp" />
 
-                <!--<Button
+                <Button
                     android:id="@+id/help"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -119,10 +119,10 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginEnd="15dp"
                     android:layout_weight="1"
-                    android:background="#FE4C58"
+                    android:background="#909090"
                     android:text="Help"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />-->
+                    android:textColor="#D4D4D4"
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

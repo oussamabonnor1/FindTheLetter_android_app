@@ -37,7 +37,7 @@ public class SoloActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play);
+        setContentView(R.layout.activity_solo);
         wordText = (TextView) findViewById(R.id.wordText);
         scoreText = (TextView) findViewById(R.id.scoreText);
         textField = (EditText) findViewById(R.id.textField);
