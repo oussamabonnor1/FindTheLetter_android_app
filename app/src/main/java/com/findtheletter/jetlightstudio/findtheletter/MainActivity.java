@@ -11,10 +11,12 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Button wordButton;
     Button imageButton;
+    Button soloButton;
     TextView scoreText;
     int score;
     int imageIndex;
     int wordIndex;
+    int soloIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), PlayActivity.class);
-                i = pushItems(i,score,wordIndex,imageIndex);
+                i = pushItems(i, score, wordIndex, imageIndex, soloIndex);
                 startActivity(i);
             }
         });
@@ -34,7 +36,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), ImageActivity.class);
-                i = pushItems(i,score,wordIndex,imageIndex);
+                i = pushItems(i, score, wordIndex, imageIndex, soloIndex);
+                startActivity(i);
+            }
+        });
+        soloButton = (Button) findViewById(R.id.soloButton);
+        soloButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), SoloActivity.class);
+                i = pushItems(i, score, wordIndex, imageIndex, soloIndex);
                 startActivity(i);
             }
         });
@@ -51,15 +62,16 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (getIntent().getExtras() != null) {
             loadItems();
-        } else System.out.println("no");
+        }
 
         scoreText.setText("Score: " + String.format("%02d", score));
     }
 
-    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
+    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex, int soloIndex) {
         i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
+        i.putExtra("soloIndex", soloIndex);
         return i;
     }
 
@@ -67,5 +79,6 @@ public class MainActivity extends AppCompatActivity {
         score = getIntent().getExtras().getInt("score");
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
+        soloIndex = getIntent().getExtras().getInt("soloIndex");
     }
 }

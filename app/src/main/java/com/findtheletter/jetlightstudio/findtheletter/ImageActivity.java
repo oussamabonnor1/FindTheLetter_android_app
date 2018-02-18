@@ -28,6 +28,7 @@ public class ImageActivity extends AppCompatActivity {
     int imageIndex = 0;
     int score = 0;
     int wordIndex = 0;
+    int soloIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +145,7 @@ public class ImageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(getApplicationContext(), MainActivity.class).putExtra("score", score);
-        i = pushItems(i, score, wordIndex, imageIndex);
+        i = pushItems(i, score, wordIndex, imageIndex, soloIndex);
         startActivity(i);
         super.onBackPressed();
     }
@@ -159,10 +160,11 @@ public class ImageActivity extends AppCompatActivity {
         scoreText.setText("Score: " + String.format("%02d", score));
     }
 
-    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
+    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex, int soloIndex) {
         i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
+        i.putExtra("soloIndex", soloIndex);
         return i;
     }
 
@@ -170,6 +172,7 @@ public class ImageActivity extends AppCompatActivity {
         score = getIntent().getExtras().getInt("score");
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
+        soloIndex = getIntent().getExtras().getInt("soloIndex");
         System.out.println(score + " " + wordIndex + " " + imageIndex);
         setImage();
     }

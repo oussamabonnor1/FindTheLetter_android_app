@@ -29,8 +29,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/imageTheme" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".soloActivity"></activity>
+        <activity
+            android:name=".HelpActivity"
+            android:theme="@style/helpTheme" />
+        <activity
+            android:name=".SoloActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/soloTheme" />
     </application>
 
 </manifest>

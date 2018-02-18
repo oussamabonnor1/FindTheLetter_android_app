@@ -30,6 +30,7 @@ public class PlayActivity extends AppCompatActivity {
     Word jetlight;
     int wordIndex = 0;
     int imageIndex = 0;
+    int soloIndex = 0;
     int score = 0;
 
     @Override
@@ -134,9 +135,7 @@ public class PlayActivity extends AppCompatActivity {
         for (int i = 0; i < jetlight.organizedCharacters.size(); i++) {
             wordText.setText(wordText.getText() + jetlight.organizedCharacters.get(i).toString());
         }
-        System.out.println("one: " + score);
         score = jetlight.getScore();
-        System.out.println("two: " + score);
         float progress = (float) this.wordIndex / words.length;
         progressBar.setProgress((int) (progress * 100));
         scoreText.setText("Score: " + String.format("%02d", score));
@@ -149,7 +148,7 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(getApplicationContext(), MainActivity.class).putExtra("score", score);
-        i = pushItems(i, score, wordIndex, imageIndex);
+        i = pushItems(i, score, wordIndex, imageIndex, soloIndex);
         startActivity(i);
         super.onBackPressed();
     }
@@ -163,10 +162,11 @@ public class PlayActivity extends AppCompatActivity {
         scoreText.setText("Score: " + String.format("%02d", score));
     }
 
-    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex) {
+    protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex, int soloIndex) {
         i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
+        i.putExtra("soloIndex", soloIndex);
         return i;
     }
 
@@ -175,6 +175,7 @@ public class PlayActivity extends AppCompatActivity {
         jetlight.setScore(score);
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
+        soloIndex = getIntent().getExtras().getInt("soloIndex");
         makeWordIntoText(wordIndex);
     }
 }
