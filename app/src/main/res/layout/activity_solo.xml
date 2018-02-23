@@ -119,7 +119,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginEnd="15dp"
                     android:layout_weight="1"
-                    android:background="#909090"
+                    android:background="#959595"
                     android:text="Help"
                     android:textColor="#D4D4D4"
                     android:textSize="20sp" />

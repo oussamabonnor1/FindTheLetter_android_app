@@ -37,6 +37,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/soloTheme" />
+        <activity android:name=".TextActivity"></activity>
     </application>
 
 </manifest>
