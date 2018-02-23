@@ -1,6 +1,7 @@
 package com.findtheletter.jetlightstudio.findtheletter;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button imageButton;
     Button soloButton;
     TextView scoreText;
+    SQLiteManagerMine help;
     int score;
     int imageIndex;
     int wordIndex;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        help = new SQLiteManagerMine(this, null);
+
         wordButton = (Button) findViewById(R.id.wordButton);
         wordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,22 +67,27 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             loadItems();
         }
-
         scoreText.setText("Score: " + String.format("%02d", score));
     }
 
     protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex, int soloIndex) {
-        i.putExtra("score", score);
+        help.updateData(score, wordIndex, imageIndex, soloIndex);
+        /*i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
-        i.putExtra("soloIndex", soloIndex);
+        i.putExtra("soloIndex", soloIndex);*/
         return i;
     }
 
     protected void loadItems() {
-        score = getIntent().getExtras().getInt("score");
+        int[] temp = help.retreiveData();
+        score = temp[0];
+        wordIndex = temp[1];
+        imageIndex = temp[2];
+        soloIndex = temp[3];
+        /*score = getIntent().getExtras().getInt("score");
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
-        soloIndex = getIntent().getExtras().getInt("soloIndex");
+        soloIndex = getIntent().getExtras().getInt("soloIndex");*/
     }
 }
