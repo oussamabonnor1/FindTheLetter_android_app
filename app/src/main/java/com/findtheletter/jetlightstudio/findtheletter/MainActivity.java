@@ -71,23 +71,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected Intent pushItems(Intent i, int score, int wordIndex, int imageIndex, int soloIndex) {
-        help.updateData(score, wordIndex, imageIndex, soloIndex);
-        /*i.putExtra("score", score);
+        //help.updateData(score, wordIndex, imageIndex, soloIndex);
+        i.putExtra("score", score);
         i.putExtra("wordIndex", wordIndex);
         i.putExtra("imageIndex", imageIndex);
-        i.putExtra("soloIndex", soloIndex);*/
+        i.putExtra("soloIndex", soloIndex);
         return i;
     }
 
     protected void loadItems() {
-        int[] temp = help.retreiveData();
+        /*int[] temp = help.retreiveData();
         score = temp[0];
         wordIndex = temp[1];
         imageIndex = temp[2];
-        soloIndex = temp[3];
-        /*score = getIntent().getExtras().getInt("score");
+        soloIndex = temp[3];*/
+        score = getIntent().getExtras().getInt("score");
         wordIndex = getIntent().getExtras().getInt("wordIndex");
         imageIndex = getIntent().getExtras().getInt("imageIndex");
-        soloIndex = getIntent().getExtras().getInt("soloIndex");*/
+        soloIndex = getIntent().getExtras().getInt("soloIndex");
     }
 }
